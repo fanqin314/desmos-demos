@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>X型区域演示</title>
+<script src="https://www.desmos.com/api/v1.12/calculator.js?apiKey=b50f9e9f0d684aa09e426b3b2e50837f"></script>
+<style>
+  body { margin: 0; background: #fff; display: flex; justify-content: center; }
+  #calculator { width: 800px; height: 600px; }
+</style>
+</head>
+<body>
+<div id="calculator"></div>
+<script>
+  var elt = document.getElementById('calculator');
+  var calculator = Desmos.GraphingCalculator(elt, {
+    expressions: true,
+    settingsMenu: true,
+    zoomButtons: true,
+    xAxisLabel: 'x',
+    yAxisLabel: 'y'
+  });
+
+  calculator.setExpressions([
+    { id: 'f1', latex: 'y = x', color: '#2d70b3', lineStyle: Desmos.Styles.SOLID },
+    { id: 'f2', latex: 'y = x^2', color: '#c74440', lineStyle: Desmos.Styles.SOLID },
+    { id: 'r1', latex: 'y = x \\left\\{0 \\le x \\le 1\\right\\}', color: '#2d70b3', hidden: true },
+    { id: 'r2', latex: 'y = x^2 \\left\\{0 \\le x \\le 1\\right\\}', color: '#c74440', hidden: true },
+    { id: 'shade', latex: 'y \\le x \\left\\{y \\ge x^2\\right\\} \\left\\{0 \\le x \\le 1\\right\\}', color: '#6042a6', fillOpacity: 0.3 },
+    { id: 'label1', latex: 'y = x', color: '#2d70b3', showLabel: true, label: 'y = x (上边界)' },
+    { id: 'label2', latex: 'y = x^2', color: '#c74440', showLabel: true, label: 'y = x^2 (下边界)' },
+    { id: 'v1', latex: 'x = 0 \\left\\{0 \\le y \\le 1\\right\\}', color: '#555', lineStyle: Desmos.Styles.DASHED, label: 'x = a', showLabel: true },
+    { id: 'v2', latex: 'x = 1 \\left\\{0 \\le y \\le 1\\right\\}', color: '#555', lineStyle: Desmos.Styles.DASHED, label: 'x = b', showLabel: true }
+  ]);
+
+  calculator.setMathBounds({
+    left: -0.5,
+    right: 1.8,
+    bottom: -0.5,
+    top: 1.5
+  });
+</script>
+</body>
+</html>

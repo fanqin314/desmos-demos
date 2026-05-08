@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Y型区域演示</title>
+<script src="https://www.desmos.com/api/v1.12/calculator.js?apiKey=b50f9e9f0d684aa09e426b3b2e50837f"></script>
+<style>
+  body { margin: 0; background: #fff; display: flex; justify-content: center; }
+  #calculator { width: 800px; height: 600px; }
+</style>
+</head>
+<body>
+<div id="calculator"></div>
+<script>
+  var elt = document.getElementById('calculator');
+  var calculator = Desmos.GraphingCalculator(elt, {
+    expressions: true,
+    settingsMenu: true,
+    zoomButtons: true,
+    xAxisLabel: 'x',
+    yAxisLabel: 'y'
+  });
+
+  calculator.setExpressions([
+    // Y型区域例子：$y=x$ 和 $y=\sqrt{x}$ 围成
+    // Y型定限：$0 \le y \le 1$, $y^2 \le x \le y$
+    { id: 'c1', latex: 'y = x', color: '#2d70b3', lineStyle: Desmos.Styles.SOLID, showLabel: true, label: 'x = y (右边界)' },
+    { id: 'c2', latex: 'y = \\sqrt{x}', color: '#c74440', lineStyle: Desmos.Styles.SOLID, showLabel: true, label: 'x = y^2 (左边界)' },
+    { id: 'shade', latex: 'x \\le y \\left\\{x \\ge y^2\\right\\} \\left\\{0 \\le y \\le 1\\right\\}', color: '#6042a6', fillOpacity: 0.3 },
+    { id: 'h1', latex: 'y = 0 \\left\\{0 \\le x \\le 1\\right\\}', color: '#555', lineStyle: Desmos.Styles.DASHED, showLabel: true, label: 'y = c (下)' },
+    { id: 'h2', latex: 'y = 1 \\left\\{0 \\le x \\le 1\\right\\}', color: '#555', lineStyle: Desmos.Styles.DASHED, showLabel: true, label: 'y = d (上)' },
+    // 横线穿区域示意
+    { id: 'line', latex: 'y = 0.5 \\left\\{0.25 \\le x \\le 0.5\\right\\}', color: '#4CAF50', lineStyle: Desmos.Styles.DASHED },
+    { id: 'pts', latex: '(0.25,0.5)', color: '#4CAF50', showLabel: true, label: 'x = y^2' },
+    { id: 'pt2', latex: '(0.5,0.5)', color: '#4CAF50', showLabel: true, label: 'x = y' }
+  ]);
+
+  calculator.setMathBounds({
+    left: -0.3,
+    right: 1.5,
+    bottom: -0.3,
+    top: 1.5
+  });
+</script>
+</body>
+</html>
