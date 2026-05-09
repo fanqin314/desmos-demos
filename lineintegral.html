@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>对弧长的曲线积分演示</title>
+<script src="https://www.desmos.com/api/v1.12/calculator.js?apiKey=b50f9e9f0d684aa09e426b3b2e50837f"></script>
+<style>
+  body { margin: 0; background: #fff; display: flex; justify-content: center; }
+  #calculator { width: 800px; height: 600px; }
+</style>
+</head>
+<body>
+<div id="calculator"></div>
+<script>
+  var elt = document.getElementById('calculator');
+  var c = Desmos.GraphingCalculator(elt, { expressions: true });
+
+  c.setExpressions([
+    // 圆周 x^2+y^2=a^2
+    { id:'c1', latex:'x^2+y^2=1', color:'#2d70b3', lineStyle:Desmos.Styles.SOLID,
+      showLabel:true, label:'圆周 L: x^2+y^2=1' },
+    // 标注a=1
+    { id:'p1', latex:'(1,0)', color:'#c74440', showLabel:true, label:'t=0' },
+    { id:'p2', latex:'(0,1)', color:'#c74440', showLabel:true, label:'t=pi/2' },
+    { id:'p3', latex:'(-1,0)', color:'#c74440', showLabel:true, label:'t=pi' },
+    { id:'p4', latex:'(0,-1)', color:'#c74440', showLabel:true, label:'t=3pi/2' },
+    // 弧长微元示意 - 一个小的弧段
+    { id:'arc', latex:'(\\cos\\frac{\\pi}{4},\\sin\\frac{\\pi}{4})',
+      color:'#6042a6', pointStyle:Desmos.Styles.OPEN,
+      showLabel:true, label:'ds微小弧段' }
+  ]);
+
+  c.setMathBounds({ left:-1.5, right:1.5, bottom:-1.5, top:1.5 });
+</script>
+</body>
+</html>
